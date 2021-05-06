@@ -11,7 +11,7 @@ Connection string to mongodb cluster, database name and collection name are stor
 
 To use this project you will need to:
 * Create a mongodb cluster 
-* Set up a database with articles: 
+* Set up a database with articles using this script: 
 
 ```python
 import pymongo
