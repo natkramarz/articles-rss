@@ -1,0 +1,5 @@
+azure-functions
+requests
+bs4
+pymongo
+dnspython
