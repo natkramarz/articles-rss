@@ -1,11 +1,13 @@
+# Overview 
+The Application implements web scraping articles' titles and links from rss pages of Polish news websites. It runs every hour and updates a database with the articles.  
+
 # TimerTrigger 
 
 The function is triggered at minute 0 past every hour from 7 through 21 UTC (9 through 23 in the Polish Time Zone) 
 
 # Storing Secrets in Azure Key Vault 
 
-Connection string to mongodb cluster, database name and collection name are stored in an azure keyvault.
-
+For security reasons connection string to mongodb cluster, database name and collection name are stored in an azure keyvault.
 
 # Resources 
 
