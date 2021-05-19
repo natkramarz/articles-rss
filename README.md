@@ -23,17 +23,13 @@ cluster = MongoClient(<connection_string_to_your_cluster>)
 db = cluster[<your_database_name>]
 collection = db[<your_collection_name>]
 
-sources = ['https://tvn24.pl/najwazniejsze.xml', 'https://krytykapolityczna.pl/feed/', 'https://oko.press/feed/',
-           'https://wydarzenia.interia.pl/feed', 'https://dorzeczy.pl/feed/kraj/',
-           'https://www.polsatnews.pl/rss/wszystkie.xml', 'https://www.wprost.pl/rss']
-
-source0 = {"_id": 0, "name": "tvn24.pl", "articles": []}
-source1 = {"_id": 1, "name": "krytykapolityczna.pl", "articles": []}
-source2 = {"_id": 2, "name": "oko.press", "articles": []}
-source3 = {"_id": 3, "name": "wydarzenia.interia.pl", "articles": []}
-source4 = {"_id": 4, "name": "dorzeczy.pl", "articles": []}
-source5 = {"_id": 5, "name": "polsatnews.pl", "articles": []}
-source6 = {"_id": 6, "name": "wprost.pl", "articles": []}
+source0 = {"_id": 0, "name": "tvn24.pl", "articles": [], "url": "https://tvn24.pl/najwazniejsze.xml" }
+source1 = {"_id": 1, "name": "krytykapolityczna.pl", "articles": [], "url": "https://krytykapolityczna.pl/feed/"}
+source2 = {"_id": 2, "name": "oko.press", "articles": [], "url": "https://oko.press/feed/"}
+source3 = {"_id": 3, "name": "wydarzenia.interia.pl", "articles": [], "url": "https://wydarzenia.interia.pl/feed"}
+source4 = {"_id": 4, "name": "dorzeczy.pl", "articles": [], "url": "https://dorzeczy.pl/feed/kraj/"}
+source5 = {"_id": 5, "name": "polsatnews.pl", "articles": [], "url": "https://www.polsatnews.pl/rss/wszystkie.xml"}
+source6 = {"_id": 6, "name": "wprost.pl", "articles": [], "url": "https://www.wprost.pl/rss"}
 
 collection.insert_many([source0, source1, source2, source3, source4, source5, source6])
 ```
