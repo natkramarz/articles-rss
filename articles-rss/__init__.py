@@ -20,29 +20,20 @@ class Scraper:
         self.req_headers = {'User-Agent': 
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-        # list of sources to scrape 
-        self.sources = ['https://tvn24.pl/najwazniejsze.xml', 'https://krytykapolityczna.pl/feed/', 
-                'https://oko.press/feed/',  'https://wydarzenia.interia.pl/feed',
-                'https://dorzeczy.pl/feed/kraj/', 'https://www.polsatnews.pl/rss/wszystkie.xml', 
-                'https://www.wprost.pl/rss']
-
-
     def get_articles(self):
-        for i in range(len(self.sources)):
+        for source in self.collection.find({}, {"name": 0, "defaultAssignment": 0, "articles": 0}):
             try:
-                res = requests.get(self.sources[i], headers=self.req_headers)
+                res = requests.get(source['url'], headers=self.req_headers)
                 res.raise_for_status()
                 source_object = bs4.BeautifulSoup(res.text, features="html.parser")
                 articles_object = source_object.select('item')
                 articles_data = []
 
                 for j in range(7):
-                    data = articles_object[j].getText().split('\n')
                     title = articles_object[j].select('title')[0].getText()
                     link = articles_object[j].select('guid')[0].getText()
                     articles_data.append({"title": title, "link": link})
-
-                self.collection.update_one({"_id": i}, {"$set": {"articles": articles_data}})
+                self.collection.update_one({"_id": source['_id']}, {"$set": {"articles": articles_data}})
             except Exception as exc:
                 logging.info(f"error: {exc}")
 
